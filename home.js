@@ -2,7 +2,7 @@ class Home{
     constructor(){
         this.how=createButton("HOW");
         
-        this.story=createButton("STORY");
+        this.leaderboard=createButton("LEADERBOARD");
         
         this.play=createButton("PLAY");
         
@@ -19,11 +19,11 @@ class Home{
             gameState = "how";
         });
         
-        //story button
-        this.story.position(windowWidth*2.75/4,windowHeight*2.75/4);
-        this.story.size(windowWidth/7,windowHeight/8);
-        this.story.style('background',rgb(155,0,0));
-        this.story.style('color',rgb(255,255,255));
+        //leaderboard button
+        this.leaderboard.position(windowWidth*2.75/4,windowHeight*2.75/4);
+        this.leaderboard.size(windowWidth/7,windowHeight/8);
+        this.leaderboard.style('background',rgb(155,0,0));
+        this.leaderboard.style('color',rgb(255,255,255));
         
         //play button
         this.play.position(windowWidth*0.87/2,windowHeight*2.5/4);
