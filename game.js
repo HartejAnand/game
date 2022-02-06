@@ -40,8 +40,6 @@ class Game{
         else{
             shot=false;
         }
-
-    
     };
     
 
@@ -98,8 +96,6 @@ class Game{
         }
         
         shuttleG.add(shuttle);
-
-
     };
 
     //asteroids
@@ -177,7 +173,6 @@ class Game{
         }
 
         asteroidG.add(asteroid);
-
     };
 
     //ufo's
@@ -252,7 +247,6 @@ class Game{
         }
 
         ufoG.add(ufo);
-
     };
 
     //comets
@@ -305,12 +299,9 @@ class Game{
             break;
             default: break;
         }
-
         comet.setCollider("circle",0-comet.width/4,0+comet.height/-10,comet.width/8);
 
         cometG.add(comet);
-
-
     };
     
 
@@ -361,10 +352,22 @@ class Game{
             break;
             default: break;
         }
-
         star.setCollider("circle",0,0,shootingStar.width/4);
 
         starG.add(star);
-
     };
+
+    Explosion=function(){
+        var kaboom=createSprite(mouseX,mouseY);
+        kaboom.shapeColor=rgb(255,0,0);
+        kaboom.addAnimation("explosion",boom);
+        kaboom.scale=random(windowWidth/3000,windowWidth/5000);
+        kaboom.rotation=random(0,360);
+        kaboom.lifetime=24;        
+        explosionG.add(kaboom);
+    }
+
+    hide(){
+
+    }
 }
