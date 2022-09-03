@@ -5,11 +5,13 @@ var settings;
 var game;
 var end;
 
-var title, titleI;
+var title, titleI, credits, credit, creditsI, creditI;
 var howB, playB, settingsB;
 var howI, playI, settingsI;
 var playHover=0;
 var playTilt=2;
+var creditsHover=0;
+var creditsTilt=2;
 
 var howBack, settingBack, endBack;
 var back, back2;
@@ -46,6 +48,7 @@ var starG1;
 var starG2;
 var starG3;
 var explosion, boom;
+var battery, batteryI0, batteryI1, batteryI2, batteryI3, batteryI4, batteryI5, batteryI6;
 
 var projectile;
 var freeze=false;
@@ -55,6 +58,7 @@ var shot=false;
 var score=0;
 var time=60;
 var Time=30;
+var ammo=25;
 
 var selectTime, time1, time2, time3;
 var gameTime, sixty, oneTwenty, threehundered, sixtySelect, oneTwentySelect, threehunderedSelect;
@@ -63,14 +67,16 @@ var playTime=1;
 var message="";
 var mesagePicked=false;
 var veryBad=["Don't hit the allies!","Shoot the enemy","...", "I was in one of those ships","I'll pretend I didn't see that"];
-var zero=["you did read how, right?", "click to shoot", "afk? sorry, you can't pause"];
-var bad=["Practice makes perfect","You can do it, next time","Read an insperational quote\nand come back","better than nothing!"];
-var ok=["Beter than nothing","close","one more time!"];
-var good=["Pretty good","nice job!","give yourself a sticker"];
-var veryGood=["AWSOME","pretend you have a medal","Meh","ask you parents for ice cream","I give ye bragging rights"];
+var zero=["You did read how, right?", "Click to shoot", "Afk? sorry, you can't pause"];
+var bad=["Practice makes perfect","You can do it, next time","Read an insperational quote\nand come back","Better than nothing!"];
+var ok=["Beter than nothing","Close","One more time!"];
+var good=["Pretty good","Nice job!","Give yourself a sticker"];
+var veryGood=["AWSOME","Pretend you have a medal","Meh","Ask you parents for ice cream","I give ye bragging rights"];
 
 function preload() {
   titleI=loadImage("title.png");
+  creditsI=loadImage("credits.png");
+  creditI=loadImage("credit.png");
   howI=loadImage("how.png");
   playI=loadImage("play.png");
   settingsI=loadImage("settings.png");
@@ -110,6 +116,14 @@ function preload() {
   shootingStar=loadImage("shootingStar.png")
 
   boom=loadAnimation("explosion1.png","explosion2.png","explosion3.png","explosion4.png","explosion5.png","explosion6.png");
+
+  batteryI0=loadImage("battery.png");
+  batteryI1=loadImage("battery1.png");
+  batteryI2=loadImage("battery2.png");
+  batteryI3=loadImage("battery3.png");
+  batteryI4=loadImage("battery4.png");
+  batteryI5=loadImage("battery5.png");
+  batteryI6=loadImage("battery6.png");
 }
 
 function setup() {
@@ -151,7 +165,7 @@ function draw() {
   projectile.y=mouseY;
   
   console.log(gameState);
-  
+
   if(gameState==="home"){
     home.display();
 
@@ -275,6 +289,16 @@ function draw() {
     how.hide();
     game.hide();
     settings.hide();
+  }
+
+  if(gameState==="credits"){
+    credit.visible=true;
+    if(mouseIsPressed && projectile.isTouching(credit)){
+      gameState="home";
+      credit.visible=false;
+    }
+
+    home.hide();
   }
 
   drawSprites()

@@ -1,44 +1,53 @@
 class Game{
     constructor(){
-        //star
-            for(var s=0;s<100;s++){
-            var star=createSprite(random(0,windowWidth),random(0,windowHeight),windowWidth/150,windowWidth/150);
-            var type=floor(random(0,4));
-            switch(type){
-                case 0:
-                    star.addImage(redStar);
-                    star.scale=random(windowWidth/90000,windowWidth/110000);
-                break;
-                case 1:
-                    star.addImage(orangeStar);
-                    star.scale=random(windowWidth/90000,windowWidth/110000);
-                break;
-                case 2:
-                    star.addImage(yellowStar);
-                    star.scale=random(windowWidth/90000,windowWidth/110000);
-                break;
-                case 3:
-                    star.addImage(whiteStar);
-                    star.scale=random(windowWidth/90000,windowWidth/110000);
-                default: break;
-            }
-            }
-        
+        //battery
+        battery=createSprite(windowWidth/2,windowHeight*3.5/4,windowWidth/200,windowWidth/200);
+        battery.scale=windowWidth/6000;
     };
     display(){
         background(0,0,0);
         noStroke();
         fill(255,255,255);
         textSize(windowWidth/50);
-        text("Score: "+score,windowWidth/100,windowHeight/20);
-        text("Time: "+time,windowWidth*4.4/5,windowHeight/20);
+        text("Score: " + score, windowWidth/100, windowHeight/20);
+        text("Time: " + floor(time/4), windowWidth*4.4/5, windowHeight/20);
+        text("Ammo: " + ammo, windowWidth*2/5, windowHeight/20);
 
-        if(mouseIsPressed && freeze===false){
+        if(mouseIsPressed && freeze===false && ammo>=4){
             cursor("cell");
             shot=true;
+            ammo-=4;
         }
         else{
             shot=false;
+            ammo+=0.1;
+        }
+
+        //making it so ammo can't go over limit
+        if(ammo>24){
+            ammo=24;
+        }
+
+        if(ammo<4){
+            battery.addImage(batteryI0);
+        }
+        else if(ammo<8){
+            battery.addImage(batteryI1);
+        }
+        else if(ammo<12){
+            battery.addImage(batteryI2);
+        }
+        else if(ammo<16){
+            battery.addImage(batteryI3);
+        }
+        else if(ammo<20){
+            battery.addImage(batteryI4);
+        }
+        else if(ammo<24){
+            battery.addImage(batteryI5);
+        }
+        else if(ammo===24){
+            battery.addImage(batteryI6);
         }
     };
     
@@ -220,7 +229,7 @@ class Game{
             default: break;
         }
 
-        var ifo=floor(random(1,4));
+        var ifo=floor(random(0,4));
         switch(ifo){
             case 0:
                 ufo.addImage(ufo1);
