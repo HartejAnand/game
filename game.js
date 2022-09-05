@@ -11,7 +11,6 @@ class Game{
         textSize(windowWidth/50);
         text("Score: " + score, windowWidth/100, windowHeight/20);
         text("Time: " + floor(time/4), windowWidth*4.4/5, windowHeight/20);
-        text("Ammo: " + ammo, windowWidth*2/5, windowHeight/20);
 
         if(mouseIsPressed && freeze===false && ammo>=4){
             cursor("cell");
